@@ -1,0 +1,1 @@
+Employee Timesheet is a mock website as an adapted version based on a work project I did. This version uses ASP.NET MVC Core 2 and Entity Framework Core with a code-first database approach, along with ASP.NET Core Identity to authenicate users. jQuery is used for Ajax calls, custom validation, and animation for the timesheet.
