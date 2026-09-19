@@ -1,0 +1,92 @@
+﻿#dailyMemoTable {
+    font-size: 95%;
+}
+
+.task {
+    width: 25px;
+}
+
+.taskDropDown {
+    width: 205px;
+}
+
+textarea {
+    box-sizing: border-box;
+    max-height:200px;
+    /*max-height: 94px;  optional, but recommended */
+    /*min-height: 31px;*/
+    min-height: 48px;
+    overflow-x: hidden; /* for Firefox (issue #5) */
+}
+
+#DailyMemoHeader_Suggestions {
+    width: 97%;
+    background-color:#ffffff;
+}
+
+.actionBtn {
+    padding: 3px 8px 2.5px 8px;
+    color: white !important;
+}
+
+.btnDelete {
+    background-image: url(./images/delete.png);
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+}
+
+.btnAdd {
+    /*background-image: url(./images/InsertRecord.png);*/
+    background-image: url(./images/enhancement.png);
+    background-size:cover;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+}
+
+/*alignment and color*/
+.successmessage {
+    color: $success-message;
+}
+
+.headermemocolor {
+    background-color: $header-memo;
+    color: #ffffff;
+}
+
+.summarytotal {
+    background-color: $summary-total !important;
+    font-size:84%;
+}
+
+@media only screen and (max-width: 1319px)  {
+    .summarytotal{
+        font-size:75%;
+    }
+}
+
+.hours {
+    background-color: $hours;
+}
+
+.totals {
+    background-color: $totals;
+    text-align: center;
+}
+
+.task, .qtyTotal, .minTotal, .calculatecolumn {
+    text-align: right;
+}
+
+.footercolor {
+    background-color: $footer !important;
+}
+
+.headercolor {
+    background-color: $header !important;
+}

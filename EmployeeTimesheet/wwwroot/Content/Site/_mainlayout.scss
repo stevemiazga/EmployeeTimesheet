@@ -1,0 +1,114 @@
+﻿/* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.  */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/*  apply a natural box layout model to all elements  */
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* ------------- BODY ------------- */
+body {
+    font-family: $defaultFont;
+    font-size: $font-size-regular;
+    font-weight: $normalWeight;
+}
+
+
+.mainsection {
+    background-color: #ffffff;
+    clear: both;
+    float: none;
+    width: 100%;
+}
+
+.mainlayout {
+    background-color: #ffffff;
+    margin: 0px auto 0px auto;
+    max-width: 1320px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.maincontent {
+    background-color: #ffffff;
+    padding: 30px 0px 30px 0px;
+    min-height: 700px;
+}
+
+
+main{
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+header {
+    background-color: $primaryColor;
+    color: $secondaryColor;
+    padding: 1rem $gutter;
+
+    img {
+        float: left;
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: $normalWeight;
+        float: left;
+        padding: 16px 0 0 16px;
+    }
+}
+
+.activeMenu {
+    background-color: darken( $secondaryColor, 10% );
+}
+
+.form-control {
+    border: 1px solid #808080;
+    padding: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    line-height: 20px;
+
+    h4 {
+        margin-bottom: 5px;
+    }
+
+    .submitbutton {
+        margin-top: 5px;
+        padding: 6px;
+        font-size: 100%;
+    }
+}
+
+
+.hyperlink a:link {
+    color: $secondaryColor;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.hyperlink a:visited {
+    color: $secondaryColor;
+}
+
+.hyperlink a:hover {
+    color: #505050;
+}
+
+.hyperlink a:active {
+    color: $secondaryColor;
+}
+
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}

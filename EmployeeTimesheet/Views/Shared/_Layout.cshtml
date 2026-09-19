@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Employee Timesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Employee Timesheet</title>
+    <environment include="Development">
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,700" rel="stylesheet">
+        <script src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/dailymemobundlefunctions.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.textarea_autosize.min.js")" type="text/javascript"></script>
+    </environment>
+    <environment exclude="Development">
+        <link href="@Url.Content("~/Content/Site.min.css")" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,700" rel="stylesheet">
+        <script src="@Url.Content("~/Scripts/jquery-3.1.1.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/dailymemobundlefunctions.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.textarea_autosize.min.js")" type="text/javascript"></script>
+    </environment>
+
+</head>
+<body>
+    <div class="masterpagelayout">
+        <div id="ContentRegion">
+            <div class="mainsection">
+                <div class="mainlayout">
+                    <div class="maincontent">
+
+                        <header class="clearfix">
+                            <img class="responsiveimage" src="~/Content/images/TimeSheet-logo.gif" height="60" width="60" />
+                            <h1>Employee Timesheet</h1>
+                        </header>
+                        <nav class="clearfix">
+                            <button class="hamburgerBtn"></button>
+                            <ul id="primaryNav" class="closed">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li active-menu-controller="Timesheet" active-menu-action="Edit">
+                                        <a asp-action="Edit" asp-controller="Timesheet">Current Timesheet</a>
+                                    </li>
+                                    <li active-menu-controller="TimesheetHistory" active-menu-action="Index">
+                                        <a asp-action="Index" asp-controller="TimesheetHistory">Timesheet History</a>
+                                    </li>
+                                    <li active-menu-controller="User" active-menu-action="LogOff">
+                                        <a asp-action="LogOff" asp-controller="User">Log Off</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li active-menu-controller="User" active-menu-action="Login">
+                                        <a asp-action="Login" asp-controller="User">Login</a>
+                                    </li>
+                                }
+                                <li active-menu-controller="Home" active-menu-action="About">
+                                    <a asp-action="About" asp-controller="Home">About</a>
+                                </li>
+                                <li active-menu-controller="Home" active-menu-action="Contact">
+                                    <a asp-action="Contact" asp-controller="Home">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <main>
+                            @RenderBody()
+                        </main>
+                        <footer>
+                            <div>
+                                &copy;<span class="copydate"></span>&nbsp;Steve Miazga
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.hamburgerBtn').click(function () {
+                $('#primaryNav').toggleClass("closed");
+            });
+
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            if (currentYear == 2018) {
+                $('.copydate').text(currentYear.toString());
+            }
+            else {
+                $('.copydate').text("2018 - " + currentYear);
+            }
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

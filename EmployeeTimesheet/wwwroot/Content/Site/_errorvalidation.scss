@@ -1,0 +1,107 @@
+﻿.errorHighlight1 {
+    @include errorhighlight($error-highlight1);
+}
+
+.errorMessage1 {
+    color: $error-highlight1;
+}
+
+.errorHighlight2 {
+    @include errorhighlight($error-highlight2);
+}
+
+.errorMessage2 {
+    color: $error-highlight2;
+}
+
+.errorHighlight3 {
+    @include errorhighlight($error-highlight3);
+}
+
+.errorMessage3 {
+    color: $error-highlight3;
+}
+
+.errorHighlight4 {
+    @include errorhighlight($error-highlight4);
+}
+
+.errorMessage4 {
+    color: $error-highlight4;
+}
+
+.errorHighlight5 {
+    @include errorhighlight($error-highlight5);
+}
+
+.errorMessage5 {
+    color: $error-highlight5;
+}
+
+.errorHighlight6 {
+    @include errorhighlight($error-highlight6);
+}
+
+.errorMessage6 {
+    color: $error-highlight6;
+}
+
+.errorHighlight7 {
+    @include errorhighlight($error-highlight7);
+}
+
+.errorMessage7 {
+    color: $error-highlight7;
+}
+
+.errorHighlight8 {
+    @include errorhighlight($error-highlight8);
+}
+
+.errorMessage8 {
+    color: $error-highlight8;
+}
+
+div[class^="errorMessage"] {
+    display: list-item;
+    margin-left: 10px;
+    margin-right: 25px;
+    list-style-type: disc;
+}
+
+.errorTable {
+    display: table;
+}
+
+.errorRow {
+    display: table-row;
+}
+
+.errorCell {
+    display: table-cell;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+
+.text-danger {
+    color: #ed1c24;
+}
+
+.field-validation-error {
+    color: #ed1c24;
+}
+
+.input-validation-error {
+    border: 1px solid #ed1c24;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ed1c24;
+}
+
+.validation-summary-valid {
+    display: none;
+}

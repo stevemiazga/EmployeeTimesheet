@@ -1,0 +1,35 @@
+﻿.memoDateBoxContainer {
+    float: left;
+    width: 10%;
+}
+
+@media only screen and (max-width:1075px) {
+    .memoDateBoxContainer {
+        float: none;
+        clear: both;
+    }
+}
+
+.memoDateBox {
+    overflow: auto;
+    height: auto;
+    width: 100px;
+    padding: 2px;
+    margin: 5px;
+    border: 1px solid #000000;
+}
+
+.activeMemoDate {
+    background-color: #0054a6;
+}
+
+a.detailDailyMemo {
+    padding: 5px;
+    text-decoration: none;
+    font-size: 84%;
+    color: $secondaryColor;
+}
+
+.activeMemoDateLink {
+    color: #ffffff !important;
+}

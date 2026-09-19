@@ -1,0 +1,51 @@
+﻿header {
+    margin-top:10px;
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+main,footer {
+    margin-left:15px;
+    margin-right:15px;
+}
+
+/* NAVigation  */
+nav {
+    background-color: $secondaryColor;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    ul li a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: .7rem 2%;
+        border-bottom: solid 1px rgba(0,0,0,0.3);
+    }
+
+    ul li.active a {
+        background-color: $menuColor;
+    }
+
+    ul li ul li a {
+        padding-left: 8%;
+    }
+
+    .hamburgerBtn {
+        background-image: url(../Content/images/menuwhite.png);
+        background-repeat: no-repeat;
+        width: 72px;
+        height: 32px;
+        background-color: $save-button;
+        background-position: center center;
+        border: 1px solid $save-button;
+        margin: 6px 0 6px 2%;
+    }
+
+    ul.closed {
+        display: none;
+    }
+}
+

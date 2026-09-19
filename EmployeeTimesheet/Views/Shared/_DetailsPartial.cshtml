@@ -1,0 +1,257 @@
+﻿@using EmployeeTimesheet.Helpers
+@model EmployeeTimesheet.ViewModels.DailyMemoIndividual
+
+<input id="workId" type="hidden" value='@{@ViewBag.Workinghours.WorkId}' />
+<div class="dailyMemoContainer" style="overflow-x:auto;">
+    <div id="detailtext" class="infomessage">@ViewBag.Title
+        @if (ViewBag.Submitted == "Yes")
+        {
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;<a asp-action="ReSubmit" asp-controller="Timesheet" class="submitbutton actionBtn" style="font-style:normal !important;text-decoration:none;display:inline-block;margin-top:5px;">ReSubmit</a></span>
+        }
+    </div>
+    <table id="dailyMemoTable" class="table table-bordered table-striped table-condensed">
+        <thead>
+            <tr style="border:none;">
+                <th colspan="3" style="border:none;">&nbsp;</th>
+                <th style="border:none;" colspan="21">
+                    <div>
+                        <div id="errorText" class="errorTable"></div>
+                    </div>
+                </th>
+            </tr>
+            <tr class="headermemocolor">
+                <th colspan="3">
+                    @ViewBag.Workinghours.WorkHours
+                </th>
+                <th colspan="18" class="text-center">@ViewBag.EmployeeNameDate</th>
+            </tr>
+            <tr class="headercolor">
+                <th rowspan="2" style="vertical-align:middle">Department</th>
+                <th rowspan="2" colspan="2" style="vertical-align:middle">Task Description</th>
+                <th class="hours" colspan="2"><div id="WorkHours1">@ViewBag.Workinghours.WorkHours1</div></th>
+                <th class="hours" colspan="2"><div id="WorkHours2">@ViewBag.Workinghours.WorkHours2</div></th>
+                <th class="hours" colspan="2"><div id="WorkHours3">@ViewBag.Workinghours.WorkHours3</div></th>
+                <th class="hours" colspan="2"><div id="WorkHours4">@ViewBag.Workinghours.WorkHours4</div></th>
+                <th class="hours" colspan="2"><div id="WorkHours5">@ViewBag.Workinghours.WorkHours5</div></th>
+                <th class="hours" colspan="2"><div id="WorkHours6">@ViewBag.Workinghours.WorkHours6</div></th>
+                <th class="hours" colspan="2"><div id="WorkHours7">@ViewBag.Workinghours.WorkHours7</div></th>
+                <th class="hours" colspan="2"><div id="WorkHours8">@ViewBag.Workinghours.WorkHours8</div></th>
+                <th class="totals" colspan="2">Totals</th>
+            </tr>
+            <tr>
+                <th class="headerqtymin1">Qty</th>
+                <th class="headerqtymin1">Mins</th>
+                <th class="headerqtymin2">Qty</th>
+                <th class="headerqtymin2">Mins</th>
+                <th class="headerqtymin3">Qty</th>
+                <th class="headerqtymin3">Mins</th>
+                <th class="headerqtymin4">Qty</th>
+                <th class="headerqtymin4">Mins</th>
+                <th class="headerqtymin5">Qty</th>
+                <th class="headerqtymin5">Mins</th>
+                <th class="headerqtymin6">Qty</th>
+                <th class="headerqtymin6">Mins</th>
+                <th class="headerqtymin7">Qty</th>
+                <th class="headerqtymin7">Mins</th>
+                <th class="headerqtymin8">Qty</th>
+                <th class="headerqtymin8">Mins</th>
+                <th>Qty</th>
+                <th>Mins</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ if (Model.DailyMemoTransactions != null)
+                {
+                    for (int i = 0; i < Model.DailyMemoTransactions.Count(); i++)
+                    {
+                        if (Model.DailyMemoTransactions[i].TaskType == "Task")
+                        {
+                            <tr class="taskdata">
+                                <td>
+                                    <span lookup-for="DailyMemoTransactions[i].TransDepartmentId" select-list=@{(IEnumerable<SelectListItem>)ViewBag.DepartmentDropDown}></span>
+                                    @*@Html.LookUpIdFor(m => m.DailyMemoTransactions[i].TransDepartmentId, (IEnumerable<SelectListItem>)ViewBag.DepartmentDropDown, null)*@
+                                </td>
+                                <td colspan="2">
+                                    <textarea class="taskDescr" readonly="readonly">@Html.DisplayFor(m => m.DailyMemoTransactions[i].TaskDescr)</textarea>
+                                </td>
+                                <td>
+                                    <div class="task qty colqty1">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoQty1)</div>
+                                </td>
+                                <td>
+                                    <div class="task min colmin1">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes1)</div>
+                                </td>
+                                <td>
+                                    <div class="task qty colqty2">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoQty2)</div>
+                                </td>
+                                <td>
+                                    <div class="task min colmin2">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes2)</div>
+                                </td>
+                                <td>
+                                    <div class="task qty colqty3">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoQty3)</div>
+                                </td>
+                                <td>
+                                    <div class="task min colmin3">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes3)</div>
+                                </td>
+                                <td>
+                                    <div class="task qty colqty4">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoQty4)</div>
+                                </td>
+                                <td>
+                                    <div class="task min colmin4">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes4)</div>
+                                </td>
+                                <td>
+                                    <div class="task qty colqty5">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoQty5)</div>
+                                </td>
+                                <td>
+                                    <div class="task min colmin5">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes5)</div>
+                                </td>
+                                <td>
+                                    <div class="task qty colqty6">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoQty6)</div>
+                                </td>
+                                <td>
+                                    <div class="task min colmin6">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes6)</div>
+                                </td>
+                                <td>
+                                    <div class="task qty colqty7">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoQty7)</div>
+                                </td>
+                                <td>
+                                    <div class="task min colmin7">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes7)</div>
+                                </td>
+                                <td>
+                                    <div class="task qty colqty8">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoQty8)</div>
+                                </td>
+                                <td>
+                                    <div class="task min colmin8">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes8)</div>
+                                </td>
+                                <td>
+                                    <div class="qtyTotal"></div>
+                                </td>
+                                <td>
+                                    <div class="minTotal"></div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+
+            }
+            <tr class="breakdata">
+                <td colspan="3" style="text-align:right;font-weight:700;">Break(s)</td>
+                @{ if (Model.DailyMemoTransactions != null)
+                    {
+                        for (int i = 0; i < Model.DailyMemoTransactions.Count(); i++)
+                        {
+                            if (Model.DailyMemoTransactions[i].TaskType == "Break")
+                            {
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task breakmin colmin1">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes1)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task breakmin colmin2">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes2)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task breakmin colmin3">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes3)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task breakmin colmin4">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes4)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task breakmin colmin5">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes5)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task breakmin colmin6">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes6)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task breakmin colmin7">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes7)</div>
+                                </td>
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2"></td>
+                            }
+                        }
+                    }
+                }
+            </tr>
+            <tr class="lunchdata">
+                <td colspan="3" style="text-align:right;font-weight:700;">Lunch</td>
+                @{ if (Model.DailyMemoTransactions != null)
+                    {
+                        for (int i = 0; i < Model.DailyMemoTransactions.Count(); i++)
+                        {
+                            if (Model.DailyMemoTransactions[i].TaskType == "Lunch")
+                            {
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task lunchmin colmin1">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes1)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task lunchmin colmin2">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes2)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task lunchmin colmin3">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes3)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task lunchmin colmin4">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes4)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task lunchmin colmin5">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes5)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task lunchmin colmin6">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes6)</div>
+                                </td>
+                                <td colspan="2" style="text-align:center;">
+                                    <div class="task lunchmin colmin7">@Html.DisplayFor(m => m.DailyMemoTransactions[i].DailyMemoMinutes7)</div>
+                                </td>
+                                <td colspan="2">&nbsp;</td>
+                            }
+                        }
+                    }
+                }
+                <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3">&nbsp;</td>
+                <td colspan="2" class="mincheck1"></td>
+                <td colspan="2" class="mincheck2"></td>
+                <td colspan="2" class="mincheck3"></td>
+                <td colspan="2" class="mincheck4"></td>
+                <td colspan="2" class="mincheck5"></td>
+                <td colspan="2" class="mincheck6"></td>
+                <td colspan="2" class="mincheck7"></td>
+                <td colspan="2" class="mincheck8"></td>
+                <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr class="footercolor">
+                <td colspan="3" style="text-align:right;font-weight:700;">Comments</td>
+                <td colspan="14" style="text-align:center;vertical-align:middle;"><textarea class="taskDescr" style="background-color:#ffffff;" readonly="readonly">@Html.DisplayFor(m => m.DailyMemoHeader.Suggestions)</textarea></td>
+                <td class="summarytotal" colspan="3">
+                    <div>
+                        Total Working Minutes
+                    </div>
+                    <div>
+                        Total Minutes Worked
+                    </div>
+                    <div>
+                        Total Percentage Worked
+                    </div>
+                </td>
+                <td class="summarytotal">
+                    <div>
+                        <span id="TotMins" style="display:none;">@ViewBag.Workinghours.TotMins</span>
+                        <div class="totWorkingMins" style="text-align:right"></div>
+                    </div>
+
+                    <div>
+                        <div class="totMinsWorked" style="text-align:right"></div>
+                    </div>
+                    <div>
+                        <div class="totPercentageWorked" style="text-align:right"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+

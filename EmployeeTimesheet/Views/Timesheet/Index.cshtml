@@ -1,0 +1,28 @@
+﻿
+<div id="loading">
+    <img alt="" style="height:20px;" src="@Url.Content("~/Content/ajax-loader.gif")" />
+    <span style="font-style:italic">&nbsp;&nbsp;Setting up Employee Timesheet...</span>
+</div>
+
+<input id="tempUser" type="hidden" value='@{@ViewBag.TempUser}' />
+
+@section Scripts{
+<script type="text/javascript">
+        $(document).ready(function () {
+        var tempUser = $('#tempUser').val();
+        var url;
+        if (tempUser == 'True') {
+
+            url = "@Url.Action("Create", "TempUser")";
+        }
+        else {
+
+            url = "@Url.Action("Create", "Timesheet")";
+        }
+
+        window.location.href = url;
+
+        });
+
+</script>
+ }

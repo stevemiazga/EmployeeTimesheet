@@ -1,0 +1,47 @@
+﻿@model EmployeeTimesheet.ViewModels.LoginViewModel
+
+<div>
+    <section>
+        <div>
+            <form asp-controller="User" asp-action="Login" method="post" class="form-horizontal" role="form" asp-antiforgery="true">
+                <div class="form-group">
+                    @if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Count() > 0)
+                    {
+                        <div>
+                            <div asp-validation-summary="All"></div>
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <h4><label asp-for="UserName"></label></h4>
+                    <div>
+                        <input asp-for="UserName" class="form-control" placeholder="Enter user name" />
+                    </div>
+                    <span asp-validation-for="UserName"></span>
+                </div>
+
+                <div class="form-group">
+                    <h4><label asp-for="Password"></label></h4>
+                    <div>
+                        <input asp-for="Password" class="form-control" placeholder="Enter password" />
+                    </div>
+                    <span asp-validation-for="Password"></span>
+                </div>
+
+                <div class="form-group clearfix">
+                    <input type="submit" value="Log in" class="submitbutton" style="float:left;" />&nbsp;&nbsp;
+                    <a class="submitbutton" style="text-decoration:none;float:left;margin-left:10px;padding-bottom:4px;" asp-action="Index" asp-controller="Home">Cancel</a>
+                </div>
+
+                <div class="form-group hyperlink">
+                    <a asp-action="Index" asp-controller="Timesheet" asp-route-temp="true">Log in as temp user?</a>
+                </div>
+
+                <div class="form-group hyperlink">
+                    <a asp-action="Register" asp-controller="User">Register as new user?</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

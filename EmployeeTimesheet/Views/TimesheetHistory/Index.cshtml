@@ -1,0 +1,43 @@
+﻿
+@model IEnumerable<EmployeeTimesheet.Models.DailyMemoHeader>
+
+<div style="overflow-x:auto;">
+    <div class="infomessage">Previous Timesheet Dates&nbsp;&nbsp;&nbsp;&nbsp;*Select "Make Current" button to overwrite these prior tasks into your current timesheet.</div>
+    <div class="memoDateBoxContainer">
+        <div style="margin-top:10px;">
+            <div>
+                <div id="dailymemoDates" class="memoDateBox">
+                </div>
+            </div>
+        </div>
+        <form asp-controller="TimesheetHistory" asp-action="ReplaceDailyMemo" method="post" id="replacememoform" asp-antiforgery="true">
+            <input id="SelectedHeaderId" name="SelectedHeaderId" type="hidden" />
+            <div>
+                <div style="margin-left:5px;margin-top:5px;">
+                    <input type="button" id="replaceDailyMemo" class="submitbutton" value="Make Current" title="Use this function to fill your current timesheet with these tasks." />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div style="float:left;margin-top:10px;width:90%;">
+        <div id="detailsPartial">
+            <div id="loading" style="display: none;margin:75px;">
+                <img alt="" style="height:20px;" src="@Url.Content("~/Content/ajax-loader.gif")" />
+            </div>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        var dailymemodatesURL = '@Url.Action("GetDailyMemoDates", "TimesheetHistory")';
+        var dailymemohistorydetailURL = '@Url.Action("GetDetails", "TimesheetHistory")';
+    </script>
+    <environment include="Development">
+        <script src="~/Scripts/dailymemohistory.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/Scripts/dailymemohistory.min.js"></script>
+    </environment>
+}

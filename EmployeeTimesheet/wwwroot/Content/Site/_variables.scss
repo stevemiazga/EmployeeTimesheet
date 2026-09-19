@@ -1,0 +1,76 @@
+﻿$primaryColor: #e6e6ec;
+$secondaryColor: #0064a5;
+$fontColor: #dce2eb;
+
+$menuColor: #1425ad;
+
+$defaultFont: 'Ubuntu', sans-serif;
+$normalWeight: 300;
+$boldWeight: 700;
+
+$font-size-regular: 16px;
+
+$gutter: 2%;
+$gutterdbl: (2 * $gutter);
+
+//== Colors
+//
+$error-highlight1: #ff0000;
+$error-highlight2: #0094ff;
+$error-highlight3: #ff6a00;
+$error-highlight4: #00ff21;
+$error-highlight5: #00ffff;
+$error-highlight6: #ff00dc;
+$error-highlight7: #b200ff;
+$error-highlight8: #6000ff;
+
+$success-message: #28a745;
+
+$save-button: darken( $secondaryColor, 10% );
+
+//$header-memo: #232323;
+$header-memo: $secondaryColor;
+$summary-total: #DDD9C4;
+$hours: #eff4fa;
+$totals: #e0c6c6;
+/*$footer: darken(#e6e6ec, 5%);*/
+$footer: #e6e6ec;
+$header: lighten(#f1f2ba, 12%);
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-size-base: 12px !default;
+
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-base: 1.428571429 !default; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+$line-height-computed: floor(($font-size-base * $line-height-base)) !default; // ~20px
+
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-base: 1.428571429 !default; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+$line-height-computed: floor(($font-size-base * $line-height-base)) !default; // ~20px
+
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+
+//** Padding for `<th>`s and `<td>`s.
+$table-cell-padding: 8px !default;
+//** Padding for cells in `.table-condensed`.
+$table-condensed-cell-padding: 5px !default;
+
+//** Default background color used for all tables.
+$table-bg: transparent !default;
+//** Background color used for `.table-striped`.
+/*$table-bg-accent: #f9f9f9 !default;*/
+$table-bg-accent: #e6e6ec !default;
+//** Background color used for `.table-hover`.
+$table-bg-hover: #f5f5f5 !default;
+$table-bg-active: $table-bg-hover !default;
+
+//** Border color for table and cell borders.
+$table-border-color: #ddd !default;
+

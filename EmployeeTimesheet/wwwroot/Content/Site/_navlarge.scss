@@ -1,0 +1,43 @@
+﻿
+.hamburgerBtn{
+    display:none;
+}
+
+
+
+/*  ------------- NAV -------------  */
+nav {
+    //@include gradient($secondaryColor,darken($secondaryColor, 20%));
+    background-color: $secondaryColor;
+    ul li {
+        float: left;
+    }
+    ul li:last-child {
+        border-right: none;
+    }
+    ul li a {
+        display: block;
+        text-align: center;
+        font-weight: $boldWeight;
+        padding: .5rem;
+        width: auto;
+        color: $primaryColor;
+        text-decoration: none;
+        transition: background 0.75s ease, color 0.75s ease;
+    }
+    ul li.active a {
+        background-color: darken( $secondaryColor, 10% );
+    }
+    ul li a:hover {
+        color: $secondaryColor;
+        background-color: $primaryColor;
+    }
+
+}
+
+
+footer {
+    margin-top:75px;
+}
+
+

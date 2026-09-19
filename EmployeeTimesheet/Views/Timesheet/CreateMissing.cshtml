@@ -1,0 +1,12 @@
+﻿
+<p>
+    Sorry, the creation of your current daily memo has missing information and not able to generate. Please inform HR that the following information is missing.
+</p>
+<p>
+    @foreach(var item in ViewBag.Missing)
+    {
+        <div>@item.ToString()</div>
+    }
+</p>
+
+

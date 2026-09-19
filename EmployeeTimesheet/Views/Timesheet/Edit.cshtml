@@ -1,0 +1,306 @@
+﻿@using EmployeeTimesheet.Helpers;
+@model EmployeeTimesheet.ViewModels.DailyMemoIndividual
+
+<form asp-controller="Timesheet" asp-action="Edit" method="post" id="dailymemoform" asp-antiforgery="true">
+    <div style="overflow-x:auto;">
+        <input asp-for="DailyMemoHeader.DailyMemoHeaderId" type="hidden" />
+        <input id="employeeNameDate" name="employeeNameDate" type="hidden" value='@{@ViewBag.EmployeeNameDate}' />
+        <input id="notification" name="notification" type="hidden" value='@{@ViewBag.Notification}' />
+        <input id="activecell" name="activecell" type="hidden" value='@{@ViewBag.ActiveCell}' />
+        <table id="dailyMemoTable" class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr style="border:none;">
+                    <th colspan="3" style="border:none;vertical-align:middle;">&nbsp;</th>
+                    <th style="border:none;" colspan="18">
+                        <div>
+                            <div id="errorText" class="errorTable"></div>
+                            <div id="messageText"></div>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="headermemocolor">
+                    <th colspan="2"><select class="workingHoursDropDown" asp-for="DailyMemoHeader.WorkId" asp-items='@(IEnumerable<SelectListItem>)ViewBag.WorkingHoursDropDown'></select></th>
+                    <th>&nbsp;</th>
+                    <th colspan="18" class="text-center">@ViewBag.EmployeeNameDate</th>
+                </tr>
+                <tr class="headercolor">
+                    <th rowspan="2" style="vertical-align:middle;"><button title="Add Task" type="button" id="addTask" class="btnAdd"></button></th>
+                    <th rowspan="2" style="vertical-align:middle">Department</th>
+                    <th rowspan="2" style="vertical-align:middle">Task Description</th>
+                    <th class="hours" colspan="2"><div id="WorkHours1"></div></th>
+                    <th class="hours" colspan="2"><div id="WorkHours2"></div></th>
+                    <th class="hours" colspan="2"><div id="WorkHours3"></div></th>
+                    <th class="hours" colspan="2"><div id="WorkHours4"></div></th>
+                    <th class="hours" colspan="2"><div id="WorkHours5"></div></th>
+                    <th class="hours" colspan="2"><div id="WorkHours6"></div></th>
+                    <th class="hours" colspan="2"><div id="WorkHours7"></div></th>
+                    <th class="hours" colspan="2"><div id="WorkHours8"></div></th>
+                    <th class="totals" colspan="2">Totals</th>
+                </tr>
+                <tr>
+                    <th class="headerqtymin1">Qty</th>
+                    <th class="headerqtymin1">Mins</th>
+                    <th class="headerqtymin2">Qty</th>
+                    <th class="headerqtymin2">Mins</th>
+                    <th class="headerqtymin3">Qty</th>
+                    <th class="headerqtymin3">Mins</th>
+                    <th class="headerqtymin4">Qty</th>
+                    <th class="headerqtymin4">Mins</th>
+                    <th class="headerqtymin5">Qty</th>
+                    <th class="headerqtymin5">Mins</th>
+                    <th class="headerqtymin6">Qty</th>
+                    <th class="headerqtymin6">Mins</th>
+                    <th class="headerqtymin7">Qty</th>
+                    <th class="headerqtymin7">Mins</th>
+                    <th class="headerqtymin8">Qty</th>
+                    <th class="headerqtymin8">Mins</th>
+                    <th>Qty</th>
+                    <th>Mins</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ if (Model.DailyMemoTransactions != null)
+                    {
+                        for (int i = 0; i < Model.DailyMemoTransactions.Count(); i++)
+                        {
+                            if (Model.DailyMemoTransactions[i].TaskType == "Task")
+                            {
+                                string deleteTask = "deleteTask" + i;
+                                string taskDropDown = "taskDropDown" + i;
+                                string loadingId = "loading" + i;
+                                <tr class="taskdata additionaltask">
+                                    <td>
+                                        <div>
+                                            @if (i > 0)
+                                            {
+                                                <button title="Delete Task" type="button" id=@deleteTask class="btnDelete deleteTask"></button>
+                                            }
+                                            <input asp-for="DailyMemoTransactions[i].DailyMemoHeaderId" type="hidden" />
+                                            <input asp-for="DailyMemoTransactions[i].DailyMemoTransId" type="hidden" />
+                                        </div>
+                                        <div id="@loadingId" style="display:none;">
+                                            <img alt="" style="height:16px;width:16px;" src="@Url.Content("~/Content/ajax-loader.gif")" />
+                                        </div>
+                                    </td>
+                                    <td style="padding-right:0">
+                                        <div style="margin-bottom:4px;">
+                                            <select class="departmentDropDown" asp-for="DailyMemoTransactions[i].TransDepartmentId" asp-items='@(IEnumerable<SelectListItem>)ViewBag.DepartmentDropDown'>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <select id="@taskDropDown" class="taskDropDown"></select>
+                                            <input asp-for="DailyMemoTransactions[i].TaskId" type="hidden" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].TaskType" type="hidden" />
+                                        <textarea asp-for="DailyMemoTransactions[i].TaskDescr" class="taskDescr" rows="3"></textarea>
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoQty1" type="number" class="task qty colqty1" min="1" maxlength="3" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes1" type="number" class="task min colmin1" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoQty2" type="number" class="task qty colqty2" min="1" maxlength="3" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes2" type="number" class="task min colmin2" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoQty3" type="number" class="task qty colqty3" min="1" maxlength="3" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes3" type="number" class="task min colmin3" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoQty4" type="number" class="task qty colqty4" min="1" maxlength="3" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes4" type="number" class="task min colmin4" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoQty5" type="number" class="task qty colqty5" min="1" maxlength="3" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes5" type="number" class="task min colmin5" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoQty6" type="number" class="task qty colqty6" min="1" maxlength="3" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes6" type="number" class="task min colmin6" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoQty7" type="number" class="task qty colqty7" min="1" maxlength="3" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes7" type="number" class="task min colmin7" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoQty8" type="number" class="task qty colqty8" min="1" maxlength="3" />
+                                    </td>
+                                    <td>
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes8" type="number" class="task min colmin8" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td>
+                                        <div class="qtyTotal"></div>
+                                    </td>
+                                    <td>
+                                        <div class="minTotal"></div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+
+                }
+                <tr class="breakdata">
+                    <td colspan="3" style="text-align:right;font-weight:700;">Break(s)</td>
+                    @{ if (Model.DailyMemoTransactions != null)
+                        {
+                            for (int i = 0; i < Model.DailyMemoTransactions.Count(); i++)
+                            {
+                                if (Model.DailyMemoTransactions[i].TaskType == "Break")
+                                {
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoHeaderId" type="hidden" />
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoTransId" type="hidden" />
+                                        <input asp-for="DailyMemoTransactions[i].TaskType" type="hidden" />
+                                        <input asp-for="DailyMemoTransactions[i].TaskDescr" type="hidden" />
+                                        <input asp-for="DailyMemoTransactions[i].TransDepartmentId" type="hidden" value='@{@Model.DailyMemoTransactions[0].TransDepartmentId} ' />
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes1" type="number" class="task breakmin colmin1" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes2" type="number" class="task breakmin colmin2" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes3" type="number" class="task breakmin colmin3" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes4" type="number" class="task breakmin colmin4" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes5" type="number" class="task breakmin colmin5" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes6" type="number" class="task breakmin colmin6" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes7" type="number" class="task breakmin colmin7" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2">&nbsp;</td>
+                                    <td colspan="2"></td>
+                                }
+                            }
+                        }
+                    }
+                </tr>
+                <tr class="lunchdata">
+                    <td colspan="3" style="text-align:right;font-weight:700;">Lunch</td>
+                    @{ if (Model.DailyMemoTransactions != null)
+                        {
+                            for (int i = 0; i < Model.DailyMemoTransactions.Count(); i++)
+                            {
+                                if (Model.DailyMemoTransactions[i].TaskType == "Lunch")
+                                {
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoHeaderId" type="hidden" />
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoTransId" type="hidden" />
+                                        <input asp-for="DailyMemoTransactions[i].TaskType" type="hidden" />
+                                        <input asp-for="DailyMemoTransactions[i].TaskDescr" type="hidden" />
+                                        <input asp-for="DailyMemoTransactions[i].TransDepartmentId" type="hidden" value='@{@Model.DailyMemoTransactions[0].TransDepartmentId} ' />
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes1" type="number" class="task lunchmin colmin1" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes2" type="number" class="task lunchmin colmin2" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes3" type="number" class="task lunchmin colmin3" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes4" type="number" class="task lunchmin colmin4" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes5" type="number" class="task lunchmin colmin5" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes6" type="number" class="task lunchmin colmin6" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <input asp-for="DailyMemoTransactions[i].DailyMemoMinutes7" type="number" class="task lunchmin colmin7" min="1" max="60" maxlength="2" />
+                                    </td>
+                                    <td colspan="2">&nbsp;</td>
+                                }
+                            }
+                        }
+                    }
+
+                    <td colspan="2" align="center">
+                        <button type="submit" id="btnSave" class="submitbutton">Save</button>
+                    </td>
+                </tr>
+                <tr class="calculatecolumn">
+                    <td colspan="3">&nbsp;</td>
+                    <td colspan="2" class="mincheck1"></td>
+                    <td colspan="2" class="mincheck2"></td>
+                    <td colspan="2" class="mincheck3"></td>
+                    <td colspan="2" class="mincheck4"></td>
+                    <td colspan="2" class="mincheck5"></td>
+                    <td colspan="2" class="mincheck6"></td>
+                    <td colspan="2" class="mincheck7"></td>
+                    <td colspan="2" class="mincheck8"></td>
+                    <td colspan="2" align="center"><button id="btnSubmit" type="submit" class="submitbutton">Submit</button></td>
+                </tr>
+                <tr class="footercolor">
+                    <td colspan="3" style="text-align:right;font-weight:700;">Comments</td>
+                    <td colspan="14" style="text-align:center;vertical-align:middle;"><textarea asp-for="DailyMemoHeader.Suggestions" rows="3"></textarea></td>
+                    <td class="summarytotal" colspan="3">
+                        <div>
+                            Total Working Minutes
+                        </div>
+                        <div>
+                            Total Minutes Worked
+                        </div>
+                        <div>
+                            Total Percentage Worked
+                        </div>
+                    </td>
+                    <td class="summarytotal">
+                        <div>
+                            <span id="TotMins" style="display:none;"></span>
+                            <div class="totWorkingMins" style="text-align:right"></div>
+                        </div>
+
+                        <div>
+                            <div class="totMinsWorked" style="text-align:right"></div>
+                        </div>
+                        <div>
+                            <div class="totPercentageWorked" style="text-align:right"></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</form>
+
+
+@section Scripts{
+    <script type="text/javascript">
+        var tasksURL = '@Url.Action("GetTasksByDept", "Timesheet")';
+        //console.log(tasksURL);
+        var workhoursURL = '@Url.Action("GetWorkingHoursById", "Timesheet")';
+        //console.log(workhoursURL);
+        var ajaxloadingURL = '@Url.Content("~/Content/ajax-loader.gif")';
+        //console.log(ajaxloadingURL);
+    </script>
+    <environment include="Development">
+        <script src="~/Scripts/dailymemocreate.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/Scripts/dailymemocreate.min.js"></script>
+    </environment>
+}

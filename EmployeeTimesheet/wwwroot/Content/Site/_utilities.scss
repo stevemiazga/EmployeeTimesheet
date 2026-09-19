@@ -1,0 +1,38 @@
+﻿.submitbutton {
+    background-color: $save-button;
+    border: solid 1px $save-button;
+    color: #ffffff;
+    padding: 2px 8px 2px 8px;
+}
+
+.infomessage {
+    font-style: italic;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+
+/*Google, FireFox*/
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input, textarea {
+    border: 0;
+    background-color: transparent;
+    font-family: inherit;
+}
+
+
+
+
+
+
+
+
+

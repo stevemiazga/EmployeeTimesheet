@@ -1,0 +1,78 @@
+﻿// Configure bundling and minification for the project.
+// More info at https://go.microsoft.com/fwlink/?LinkId=808241
+[
+  {
+    "outputFileName": "wwwroot/Site/Site.min.css",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/Site/Site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/dailymemocreate.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/dailymemocreate.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/dailymemodisplay.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/dailymemodisplay.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/dailymemohistory.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/dailymemohistory.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/dailymemobundlefunctions.js",
+    "inputFiles": [
+      "wwwroot/Scripts/dailymemocreatefunctions.js",
+      "wwwroot/Scripts/dailymemovalidationfunctions.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/dailymemobundlefunctions.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/dailymemocreatefunctions.js",
+      "wwwroot/Scripts/dailymemovalidationfunctions.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  }
+]
